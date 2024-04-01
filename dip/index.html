@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Image Classification and Mask Generation</h1>
+    <hr>
+    <div>
+      <form method="POST" action="/">
+        <input type="submit" name="capture" value="Capture" {% if selected %}disabled{% endif %}>
+        <input type="submit" name="select" value="Select" {% if selected %}disabled{% endif %}>
+      </form>
+    </div>
+    <hr>
+    {% if message %}
+      <p>{{ message }}</p>
+    {% endif %}
+    {% if selected %}
+      <div>
+        <img src="{{ image_path }}" alt="Selected Image">
+      </div>
+      <hr>
+      <div>
+        <form method="POST" action="/">
+          <input type="submit" name="generate_mask" value="Generate Mask">
+          <input type="submit" name="classify" value="Classify">
+        </form>
+      </div>
+      {% if mask_image_path %}
+        <div>
+          <h3>Generated Mask</h3>
+          <img src="{{ mask_image_path }}" alt="Mask Image">
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}
+
