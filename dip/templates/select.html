@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Selection</title>
+    <style>
+        body {
+            background-image: url('static\\background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .container {
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    input[type="file"] {
+        font-size: 16px;
+    }
+
+    button[type="submit"] {
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-size: 28px;">Image Selection</h1>
+        <form method="post" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="file" style="font-size: 16px;">
+            <button type="submit" style="font-size: 18px;">Upload</button>
+        </form>
+    </div>
+</body>
+</html>
+    

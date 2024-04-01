@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Segmentation</title>
+    <style>
+        body {
+            background-image: url('static\\background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .message {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .button:hover {
+            background-color: #617062;
+        }
+
+        img {
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 70px;
+            font-weight: 600;
+            background-image: conic-gradient(#553c9a, #ee4b2b, #00c2cb);
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+        h2 {
+            font-size: 50px;
+            font-weight: 400;
+            background-image: conic-gradient(#553c9a, #ee4b2b, #00c2cb);
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Segmentation</h1>
+        <div class="message">
+            {% if message %}
+                <h2>{{ message }}</h2>
+            {% endif %}
+        </div>
+
+        {% if mask_image_path %}
+            <img src="{{ mask_image_path }}" width="400" height="300">
+        {% endif %}
+
+        {% if rotated_img_path %}
+            <img src="{{ normalized_img_path }}" width="400" height="300">
+        {% endif %}
+
+        {% if translated_img_path %}
+            <img src="{{ translated_img_path }}" width="400" height="300">
+        {% endif %}
+
+        {% if zoomed_img_path %}
+            <img src="{{ zoomed_img_path }}" width="400" height="300">
+        {% endif %}
+
+        {% if blurred_img_path %}
+            <img src="{{ blurred_img_path }}" width="400" height="300">
+        {% endif %}
+
+        {% if edges_img_path %}
+            <img src="{{ edges_img_path }}" width="400" height="300">
+        {% endif %}
+
+        {% if image_path %}
+            <img src="{{ image_path }}" width="400" height="300">
+        {% endif %}
+
+        <form method="POST" action="/">
+            {% if not image_path and not image_uploaded %}
+                <button class="button" type="submit" name="select">Select Image</button>
+            {% endif %}
+
+            <br><br>
+
+            {% if image_path %}
+                <button class="button" type="submit" name="original">Original Image</button>
+                <button class="button" type="submit" name="normalize">Normalized Image</button>
+                <button class="button" type="submit" name="intensity">Intensity Reduced Image</button>
+                <button class="button" type="submit" name="threshold">Thresholded Image</button>
+                <button class="button" type="submit" name="mask">Image Mask</button>
+                <button class="button" type="submit" name="final">Final Image</button>
+            {% endif %}
+        </form>
+
+        <form method="POST" action="/">
+            {% if mask_image_path or rotated_img_path or translated_img_path or zoomed_img_path or blurred_img_path or edges_img_path %}
+                <button class="button" type="submit">Go Back</button>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
